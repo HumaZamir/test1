@@ -1,0 +1,1735 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var EduServices;
+(function (EduServices) {
+    var DomainContext = /** @class */ (function (_super) {
+        __extends(DomainContext, _super);
+        function DomainContext() {
+            var _this = _super.call(this, globalSettings.address, "", "") || this;
+            _this.EnrollHomeStudentController = new Atlas.K12NET.SPCore.nSIS.Controllers.EnrollmentsHome.EnrollHomeStudent(_this);
+            _this.EnrollParallelStudentController = new Atlas.K12NET.SPCore.nSIS.Controllers.EnrollmentsParallel.EnrollParallelStudent(_this);
+            _this.EnrollStudentController = new Atlas.K12NET.SPCore.nSIS.Controllers.Enrollments.EnrollStudent(_this);
+            _this.IssueDocumentController = new Atlas.K12NET.SPCore.nSIS.Controllers.IssueDocuments.List(_this);
+            _this.CovidController = new Atlas.K12NET.SPCore.nSIS.Controllers.Screenings.Covid(_this);
+            _this.ConsentCovidTestController = new Atlas.K12NET.SPCore.nSIS.Controllers.Screenings.ConsentCovidTest(_this);
+            _this.AnnouncementController = new Atlas.K12NET.SPCore.nSIS.Controllers.Marks.Announce(_this);
+            _this.PaySchoolFeesController = new Atlas.K12NET.SPCore.nSIS.Controllers.Services.PaySchoolFeesController(_this);
+            _this.RequestExceptionController = new Atlas.K12NET.SPCore.nSIS.Controllers.Services.RequestExceptionController(_this);
+            _this.PreEnrollStudentController = new Atlas.K12NET.SPCore.nSIS.Controllers.Services.PreEnrollStudentController(_this);
+            _this.PreTransferStudentController = new Atlas.K12NET.SPCore.nSIS.Controllers.Services.PreTransferStudent(_this);
+            _this.TransferStudentController = new Atlas.K12NET.SPCore.nSIS.Controllers.Services.TransferStudent(_this);
+            _this.PreTransferHomeStudentController = new Atlas.K12NET.SPCore.nSIS.Controllers.Services.PreTransferHomeStudent(_this);
+            _this.PurchaseItemsController = new Atlas.K12NET.SPCore.nSIS.Controllers.Purchasings.PurchaseItems(_this);
+            _this.PreTransitHomeController = new Atlas.K12NET.SPCore.nSIS.Controllers.PreTransitHome.List(_this);
+            _this.RFEController = new Atlas.K12NET.SPCore.nSIS.Controllers.RFE.List(_this);
+            return _this;
+        }
+        return DomainContext;
+    }(Web.Core.DomainContext));
+    EduServices.DomainContext = DomainContext;
+})(EduServices || (EduServices = {}));
+var Atlas;
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var EnrollmentsHome;
+                    (function (EnrollmentsHome) {
+                        var EnrollHomeStudent = /** @class */ (function () {
+                            function EnrollHomeStudent(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            EnrollHomeStudent.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetPersonalInfo = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/PersonalInfo' }, 'PersonalInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.SearchStudent = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/Search', data: query }, 'StudentPersonal', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetGradeLevels = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/GradeLevels' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetGradeLevel = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/GradeLevel' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetSchoolInfo = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/SchoolInfo' }, 'SchoolInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetDocumentTypes = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/DocumentTypes' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetPaymentInfo = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/PaymentInfo' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetSchools = function (gradeLevelID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/Schools', data: angular.toJson(gradeLevelID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.Save = function (enrollmentRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/Save', data: enrollmentRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.Print = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/Print', data: angular.toJson(enrollmentID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetPrintJob = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/PrintStatus', data: angular.toJson(ID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.Cancel = function (requestID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/Cancel', data: angular.toJson(requestID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.BeginPayment = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/BeginPayment', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.CancelPayment = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/CancelPayment', data: angular.toJson(ID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.CommitTransaction = function (result, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/Commit', data: result }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.GetTransactionResult = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollHome/TransactionResult/' + ID }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollHomeStudent.prototype.HasPendingTransactions = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollHome/HasPendingTransactions', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return EnrollHomeStudent;
+                        }());
+                        EnrollmentsHome.EnrollHomeStudent = EnrollHomeStudent;
+                    })(EnrollmentsHome = Controllers.EnrollmentsHome || (Controllers.EnrollmentsHome = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var EnrollmentsParallel;
+                    (function (EnrollmentsParallel) {
+                        var EnrollParallelStudent = /** @class */ (function () {
+                            function EnrollParallelStudent(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            EnrollParallelStudent.prototype.GetGradeLevels = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/GradeLevels' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.SearchStudent = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/Search', data: query }, 'StudentPersonal', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetPersonalInfo = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/PersonalInfo' }, 'PersonalInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetGradeLevel = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/GradeLevel' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetSchoolInfo = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/SchoolInfo' }, 'SchoolInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetDocumentTypes = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/DocumentTypes' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetPaymentInfo = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/PaymentInfo' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetSchools = function (gradeLevelID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/Schools', data: angular.toJson(gradeLevelID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.Save = function (enrollmentRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/Save', data: enrollmentRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.Print = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/Print', data: angular.toJson(enrollmentID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetPrintJob = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/PrintStatus', data: angular.toJson(ID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.Cancel = function (requestID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/Cancel', data: angular.toJson(requestID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.BeginPayment = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/BeginPayment', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.CancelPayment = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/CancelPayment', data: angular.toJson(ID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.CommitTransaction = function (result, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/Commit', data: result }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.GetTransactionResult = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/EnrollParallel/TransactionResult/' + ID }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollParallelStudent.prototype.HasPendingTransactions = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/EnrollParallel/HasPendingTransactions', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return EnrollParallelStudent;
+                        }());
+                        EnrollmentsParallel.EnrollParallelStudent = EnrollParallelStudent;
+                    })(EnrollmentsParallel = Controllers.EnrollmentsParallel || (Controllers.EnrollmentsParallel = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var Screenings;
+                    (function (Screenings) {
+                        var Covid = /** @class */ (function () {
+                            function Covid(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            Covid.prototype.GetStudentSchoolEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Screenings/Covid/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Covid.prototype.GetScreeningAdministrations = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Screenings/Covid/Administrations' }, 'ScreeningAdministration', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Covid.prototype.GetScreeningRegistrations = function (administrationIDList, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Screenings/Covid/Registrations', data: administrationIDList }, 'ScreeningRegistration', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Covid.prototype.SubmitChanges = function () {
+                                return this.DomainContext.SubmitChanges('nSIS/Screenings/Covid');
+                            };
+                            return Covid;
+                        }());
+                        Screenings.Covid = Covid;
+                        var ConsentCovidTest = /** @class */ (function () {
+                            function ConsentCovidTest(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            ConsentCovidTest.prototype.GetStudentSchoolEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Screenings/ConsentConsentCovidTest/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            ConsentCovidTest.prototype.GetScreeningAdministrations = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Screenings/ConsentConsentCovidTest/Administrations' }, 'ScreeningAdministration', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            ConsentCovidTest.prototype.GetScreeningRegistrations = function (administrationIDList, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Screenings/ConsentConsentCovidTest/Registrations', data: administrationIDList }, 'ScreeningRegistration', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            ConsentCovidTest.prototype.SubmitChanges = function () {
+                                return this.DomainContext.SubmitChanges('nSIS/Screenings/ConsentConsentCovidTest');
+                            };
+                            return ConsentCovidTest;
+                        }());
+                        Screenings.ConsentCovidTest = ConsentCovidTest;
+                    })(Screenings = Controllers.Screenings || (Controllers.Screenings = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var IssueDocuments;
+                    (function (IssueDocuments) {
+                        var List = /** @class */ (function () {
+                            function List(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            List.prototype.GetStudents = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/IssueDocument/Students' }, 'StudentPersonal', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetSchoolEnrollments = function (studentPersonalID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/Enrollments', data: angular.toJson(studentPersonalID) }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetDocumentTypes = function (QID, enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/DocumentTypes/' + QID, data: angular.toJson(enrollmentID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            //HasPendingSchoolFee(ID: string, addToSessionStorage?: boolean) {
+                            //	var deferred = this.DomainContext.$q.defer<ServiceResult<boolean>>();
+                            //	if (addToSessionStorage == undefined) addToSessionStorage = false;
+                            //	this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/IssueDocument/Enrollments/' + ID + '/HasPendingSchoolFee' }, 'Dynamic', deferred, addToSessionStorage);
+                            //	return deferred.promise;
+                            //}
+                            List.prototype.Issue = function (parameter, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/Issue', data: parameter }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetJob = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/IssueDocument/Job/' + ID }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.BeginPayment = function (parameter, paymentGateway, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/BeginPayment/' + paymentGateway, data: parameter }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.CancelPayment = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/CancelPayment', data: angular.toJson(ID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.CommitTransaction = function (result, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/Commit', data: result }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.SetBackOfficeTransaction = function (x, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/BackOffice', data: x }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetTransactionResult = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/IssueDocument/TransactionResult/' + ID }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.HasPendingTransactions = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/IssueDocument/HasPendingTransactions', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return List;
+                        }());
+                        IssueDocuments.List = List;
+                    })(IssueDocuments = Controllers.IssueDocuments || (Controllers.IssueDocuments = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var Marks;
+                    (function (Marks) {
+                        var Announce = /** @class */ (function () {
+                            function Announce(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            Announce.prototype.IsResultsAnnounced = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Announce/IsAnnounced', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Announce.prototype.SetAnnounced = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Announce/Announce', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Announce.prototype.GetSchoolYear = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Announce/SchoolYear' }, 'SchoolYear', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Announce.prototype.GetSessionIndex = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Announce/SessionIndex' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Announce.prototype.IsCaptchaValid = function (code, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Announce/VerifyCaptcha/' + code }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Announce.prototype.IsCached = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Announce/IsCached/' + ID, data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Announce.prototype.GetEnrollment2 = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Announce/Enrollment', data: query }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            Announce.prototype.GetEnrollment = function (ID, seatNumber, code, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Announce/Enrollment/' + ID + '/' + seatNumber + '/' + code }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return Announce;
+                        }());
+                        Marks.Announce = Announce;
+                        var List = /** @class */ (function () {
+                            function List(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            List.prototype.GetEnrollmentsMarks = function (EnrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Marks/' + EnrollmentID }, 'StudentSectionMark', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return List;
+                        }());
+                        Marks.List = List;
+                    })(Marks = Controllers.Marks || (Controllers.Marks = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var PreTransitHome;
+                    (function (PreTransitHome) {
+                        var List = /** @class */ (function () {
+                            function List(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            List.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransitHome/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransitHome/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetEnrollment = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransitHome/Enrollment' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetNextGradeLevel = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransitHome/NextGradeLevel' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.SaveAsync = function (result, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransitHome/Save', data: result }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return List;
+                        }());
+                        PreTransitHome.List = List;
+                    })(PreTransitHome = Controllers.PreTransitHome || (Controllers.PreTransitHome = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var Purchasings;
+                    (function (Purchasings) {
+                        var PurchaseItems = /** @class */ (function () {
+                            function PurchaseItems(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            PurchaseItems.prototype.GetRequests = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'Purchase/Requests/' + ID }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PurchaseItems.prototype.GetEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'Purchase/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PurchaseItems.prototype.GetSalesItems = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'Purchase/Enrollments/' + enrollmentID + '/SalesItems' }, 'SalesItem', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PurchaseItems.prototype.BeginPayment = function (paymentRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'Purchase/Begin', data: paymentRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PurchaseItems.prototype.CancelPayment = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'Purchase/CancelPayment', data: angular.toJson(ID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return PurchaseItems;
+                        }());
+                        Purchasings.PurchaseItems = PurchaseItems;
+                    })(Purchasings = Controllers.Purchasings || (Controllers.Purchasings = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var RFE;
+                    (function (RFE) {
+                        var List = /** @class */ (function () {
+                            function List(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            List.prototype.GetSettings = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RFE/Settings' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetRequests = function (tempPerson, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RFE/Requests', data: tempPerson }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetStudents = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RFE/Students' }, 'StudentPersonal', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.CancelRequest = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RFE/Cancel', data: angular.toJson(ID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetRelationships = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RFE/Relationships' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetGradeLevels = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RFE/GradeLevels' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetCountries = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RFE/Countries' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetGenders = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RFE/Gender' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.SearchStudent = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RFE/SearchStudent', data: query }, 'PersonalInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetApplicant = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RFE/Applicant' }, 'PersonalInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.SearchOtherParent = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RFE/SearchOtherParent', data: query }, 'PersonalInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetStudentRequiredDocuments = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RFE/RequiredDocuments/Student', data: query }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetContactRequiredDocuments = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RFE/RequiredDocuments/Contact', data: query }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.SubmitChanges = function (query) {
+                                return this.DomainContext.SubmitChanges('nSIS/Services/RFE', [], query);
+                            };
+                            return List;
+                        }());
+                        RFE.List = List;
+                    })(RFE = Controllers.RFE || (Controllers.RFE = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var Sections;
+                    (function (Sections) {
+                        var List = /** @class */ (function () {
+                            function List(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            List.prototype.GetScheduleInfo = function (EnrollmentID, TermInfoID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Sections/Schedule/' + EnrollmentID + '/' + TermInfoID }, 'ScheduleInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetTerm = function (SchoolYearID, SchoolInfoID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Sections/Terms/' + SchoolYearID + '/' + SchoolInfoID }, 'TermInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return List;
+                        }());
+                        Sections.List = List;
+                    })(Sections = Controllers.Sections || (Controllers.Sections = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var Services;
+                    (function (Services) {
+                        var PreEnrollStudentController = /** @class */ (function () {
+                            function PreEnrollStudentController(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            PreEnrollStudentController.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetExceptionSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/Setting/Exception' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetRelationships = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/Relationships' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetGradeLevels = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/GradeLevels' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetParent = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/GetParent' }, 'StudentContact', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetElectricityNumbers = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/ElectricityNumbers' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.ValidateNationality = function (nationalityType, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Validate/Nationality/' + nationalityType, data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.SearchStudent = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Search', data: query }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.ValidateElectricityNumber = function (number, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Validate/ElectricityNumber/' + number, data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetDocumentTypes = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/DocumentTypes', data: query }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.Save = function (enrollmentRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Save', data: enrollmentRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.RequestException = function (exceptionRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/RequestException', data: exceptionRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.Print = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Print', data: angular.toJson(enrollmentID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetPrintJob = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/PrintStatus', data: angular.toJson(ID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.Cancel = function (requestID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Cancel', data: angular.toJson(requestID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetSchools = function (schoolQuery, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Schools', data: schoolQuery }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.GetSchoolContacts = function (schoolID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreEnroll/Contact/' + schoolID }, 'SchoolInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreEnrollStudentController.prototype.SearchSchool = function (criteria, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreEnroll/Schools/Search', data: criteria }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return PreEnrollStudentController;
+                        }());
+                        Services.PreEnrollStudentController = PreEnrollStudentController;
+                        var PreTransferHomeStudent = /** @class */ (function () {
+                            function PreTransferHomeStudent(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            PreTransferHomeStudent.prototype.GetSchoolYearID = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransferHome/SchoolYear' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferHomeStudent.prototype.GetParallelSchools = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransferHome/Schools' }, 'SchoolInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferHomeStudent.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransferHome/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferHomeStudent.prototype.IsApplicable = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransferHome/IsApplicable', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferHomeStudent.prototype.GetEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransferHome/GetEnrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferHomeStudent.prototype.Save = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransferHome/Save', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return PreTransferHomeStudent;
+                        }());
+                        Services.PreTransferHomeStudent = PreTransferHomeStudent;
+                        var PreTransferStudent = /** @class */ (function () {
+                            function PreTransferStudent(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            PreTransferStudent.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransfer/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.GetExceptionSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransfer/Setting/Exception' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransfer/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.GetSchoolEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransfer/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.GetSchools = function (enrollmentID, electiricyNumber, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransfer/Enrollments/' + enrollmentID + '/Schools/' + electiricyNumber }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.GetNextGradeLevel = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PreTransfer/Enrollments/' + enrollmentID + '/NextGradeLevel' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.Save = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransfer/Save', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.SearchSchools = function (enrollmentID, name, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransfer/Enrollments/' + enrollmentID + '/Schools/Search/' + name, data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.RequestException = function (exceptionRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransfer/RequestException', data: exceptionRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.Print = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransfer/Print', data: angular.toJson(enrollmentID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.GetPrintJob = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransfer/PrintStatus', data: angular.toJson(ID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PreTransferStudent.prototype.Cancel = function (requestID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PreTransfer/Cancel', data: angular.toJson(requestID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return PreTransferStudent;
+                        }());
+                        Services.PreTransferStudent = PreTransferStudent;
+                        var RequestExceptionController = /** @class */ (function () {
+                            function RequestExceptionController(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            RequestExceptionController.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.CancelRequest = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/Cancel', data: angular.toJson(ID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetGenders = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/Genders' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetGradeLevels = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/GradeLevels' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetTempIdCountries = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/TempId/Countries' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetEmployerTypes = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/EmployerTypes' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetWorkLocations = function (employerTypeID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/EmployerTypes/' + employerTypeID + '/WorkLocations' }, 'CustomCode', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestTempId = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/TempId/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetExitTypes = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/DropStudent/ExitTypes' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestDropStudent = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/DropStudent/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestExcuseAbsence = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/ExcuseAbsence/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestHoldQatariDocument = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/HoldQatariDocument/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetEnrollmentsHavingTrack = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/ChangeTrack/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetTracks = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/ChangeTrack/' + enrollmentID + '/Tracks' }, 'CustomCode', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestChangeTrack = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/ChangeTrack/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetQatariEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/ChangeLevel/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestChangeLevel = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/ChangeLevel/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestQueryEmployer = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/QueryEmployer/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.RequestUpdateEmployer = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/UpdateEmployer/Request', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.Upload = function (data, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/RequestException/Upload', data: angular.toJson(data) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetParent = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/Parent' }, 'PersonalInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetEmployerInfo = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/EmployerInfo' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            RequestExceptionController.prototype.GetEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/RequestException/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return RequestExceptionController;
+                        }());
+                        Services.RequestExceptionController = RequestExceptionController;
+                        var PaySchoolFeesController = /** @class */ (function () {
+                            function PaySchoolFeesController(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            PaySchoolFeesController.prototype.GetPendingJobs = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PaySchoolFees/PendingTransactions' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.GetSchoolYears = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PaySchoolFees/SchoolYears' }, 'SchoolYear', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.GetStudentContracts = function (schoolYearID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PaySchoolFees/StudentContracts', data: schoolYearID }, 'StudentContract', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.GetInstallments = function (contractIDList, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PaySchoolFees/Installments', data: contractIDList }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.BeginTransaction = function (installmentIDList, paymentGateway, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PaySchoolFees/Begin/' + paymentGateway, data: installmentIDList }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.CommitTransaction = function (result, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PaySchoolFees/Commit', data: result }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.PrintReceipt = function (installmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PaySchoolFees/Receipt/' + installmentID }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.GetJob = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PaySchoolFees/Job/' + ID }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.GetResult = function (transaction_uuid, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/PaySchoolFees/Result/' + transaction_uuid }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            PaySchoolFeesController.prototype.CancelPayment = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/PaySchoolFees/CancelPayment', data: angular.toJson(ID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return PaySchoolFeesController;
+                        }());
+                        Services.PaySchoolFeesController = PaySchoolFeesController;
+                        var TransferStudent = /** @class */ (function (_super) {
+                            __extends(TransferStudent, _super);
+                            function TransferStudent() {
+                                return _super !== null && _super.apply(this, arguments) || this;
+                            }
+                            TransferStudent.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Transfer/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.GetExceptionSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Transfer/Setting/Exception' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Transfer/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.GetSchoolEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Transfer/Enrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.GetSchools = function (enrollmentID, electiricyNumber, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Transfer/Enrollments/' + enrollmentID + '/Schools/' + electiricyNumber }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.GetNextGradeLevel = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Transfer/Enrollments/' + enrollmentID + '/NextGradeLevel' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.Save = function (request, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Transfer/Save', data: request }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.SearchSchools = function (enrollmentID, name, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Transfer/Enrollments/' + enrollmentID + '/Schools/Search/' + name, data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.RequestException = function (exceptionRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Transfer/RequestException', data: exceptionRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            TransferStudent.prototype.Cancel = function (requestID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Transfer/Cancel', data: angular.toJson(requestID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return TransferStudent;
+                        }(PreTransferStudent));
+                        Services.TransferStudent = TransferStudent;
+                    })(Services = Controllers.Services || (Controllers.Services = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var StudentSchoolEnrollments;
+                    (function (StudentSchoolEnrollments) {
+                        var List = /** @class */ (function () {
+                            function List(domainContext) {
+                                this.DomainContext = domainContext;
+                            }
+                            List.prototype.GetStudentSchoolEnrollments = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/StudentSchoolEnrollments' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.GetMostRecent = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/StudentSchoolEnrollments/MostRecent' }, 'StudentSchoolEnrollment', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            List.prototype.ClearCache = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/StudentSchoolEnrollments/ClearCache', data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return List;
+                        }());
+                        StudentSchoolEnrollments.List = List;
+                    })(StudentSchoolEnrollments = Controllers.StudentSchoolEnrollments || (Controllers.StudentSchoolEnrollments = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+(function (Atlas) {
+    var K12NET;
+    (function (K12NET) {
+        var SPCore;
+        (function (SPCore) {
+            var nSIS;
+            (function (nSIS) {
+                var Controllers;
+                (function (Controllers) {
+                    var Enrollments;
+                    (function (Enrollments) {
+                        var EnrollStudent = /** @class */ (function (_super) {
+                            __extends(EnrollStudent, _super);
+                            function EnrollStudent() {
+                                return _super !== null && _super.apply(this, arguments) || this;
+                            }
+                            EnrollStudent.prototype.GetExceptionSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Enroll/Setting/Exception' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetRequests = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Enroll/Requests' }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.SearchStudent = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Search', data: query }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetSchools = function (schoolQuery, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Schools', data: schoolQuery }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetSetting = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Enroll/Setting' }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetRelationships = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Enroll/Relationships' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetGradeLevels = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Enroll/GradeLevels' }, 'Code', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetParent = function (addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Enroll/GetParent' }, 'StudentContact', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.ValidateNationality = function (nationalityType, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Validate/Nationality/' + nationalityType, data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.ValidateElectricityNumber = function (number, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Validate/ElectricityNumber/' + number, data: null }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetDocumentTypes = function (query, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/DocumentTypes', data: query }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.Save = function (enrollmentRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Save', data: enrollmentRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.RequestException = function (exceptionRequest, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/RequestException', data: exceptionRequest }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.Print = function (enrollmentID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Print', data: angular.toJson(enrollmentID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetPrintJob = function (ID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/PrintStatus', data: angular.toJson(ID) }, 'Job', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.Cancel = function (requestID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Cancel', data: angular.toJson(requestID) }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.GetSchoolContacts = function (schoolID, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'GET', url: 'nSIS/Services/Enroll/Contact/' + schoolID }, 'SchoolInfo', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            EnrollStudent.prototype.SearchSchool = function (criteria, addToSessionStorage) {
+                                var deferred = this.DomainContext.$q.defer();
+                                if (addToSessionStorage == undefined)
+                                    addToSessionStorage = false;
+                                this.DomainContext.LoadFromApi({ method: 'POST', url: 'nSIS/Services/Enroll/Schools/Search', data: criteria }, 'Dynamic', deferred, addToSessionStorage);
+                                return deferred.promise;
+                            };
+                            return EnrollStudent;
+                        }(Atlas.K12NET.SPCore.nSIS.Controllers.Services.PreEnrollStudentController));
+                        Enrollments.EnrollStudent = EnrollStudent;
+                    })(Enrollments = Controllers.Enrollments || (Controllers.Enrollments = {}));
+                })(Controllers = nSIS.Controllers || (nSIS.Controllers = {}));
+            })(nSIS = SPCore.nSIS || (SPCore.nSIS = {}));
+        })(SPCore = K12NET.SPCore || (K12NET.SPCore = {}));
+    })(K12NET = Atlas.K12NET || (Atlas.K12NET = {}));
+})(Atlas || (Atlas = {}));
+var nSIS = Atlas.K12NET.SPCore.nSIS;
+//# sourceMappingURL=EduServices.js.map
