@@ -1,18 +1,16 @@
 
 <!DOCTYPE html>
-<html lang="en"  class="">
 
+<html ng-app="defaultModule" manifest="demo.appcache" lang='en' dir='ltr'>
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#282D7D" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta property="og:image" />
+    <meta property="og:description" /><meta http-equiv="Cache-control" content="public" />
+    <!-- Favicon -->
 
-  <title>Maktabaty</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="https://eduservices.edu.gov.qa/assets/img/favico.png" rel="icon">
-  <link href="https://eduservices.edu.gov.qa/assets/img/favico.png" rel="apple-touch-icon">
 
   <!-- Template Main CSS File -->
     
@@ -29,6 +27,8 @@
   <link href="https://eduservices-stg.edu.gov.qa/css/default.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
 
 
 </head>
@@ -498,98 +498,98 @@
 
   <!-- Template Main JS File -->
   <script src="https://eduservices-stg.edu.gov.qa/assets/js/main.js"></script>
-<script>
-        $(document).ready(function () {
-            $('#bwButton').click(function () {
-                $('body').toggleClass('black-and-white');
-            });
-
-            if (window.sessionStorage) {
-            //    console.info("$(window).on('storage' registered ");
-            //    $(window).on('storage', function (e) {
-            //        console.info("storage event : " + (e.originalEvent.storageArea === sessionStorage));
-            //        UnreadNotificationCount();
-            //    });
-                //    UnreadNotificationCount();
-
-                UnreadNotificationCount();
-            }
+  <script>
+    $(document).ready(function () {
+        $('#bwButton').click(function () {
+            $('body').toggleClass('black-and-white');
         });
 
-        function UnreadNotificationCount() {
-            let unreadNotificationCount = sessionStorage.getItem("UnreadNotificationCount");
-            if (unreadNotificationCount) {
-                if (document.getElementById("UnreadNotificationCount")) {
-                    document.getElementById("UnreadNotificationCount").innerHTML = unreadNotificationCount;
-                    document.getElementById("UnreadNotificationCount").style.display = 'block';
-                }
-                if (document.getElementById("UnreadNotificationCountXS")) {
-                    document.getElementById("UnreadNotificationCountXS").innerHTML = unreadNotificationCount;
-                    document.getElementById("UnreadNotificationCountXS").style.display = 'block';
-                }
-            }
-            window.setTimeout(() => {
-                UnreadNotificationCount();
-            }, 2000)
+        if (window.sessionStorage) {
+        //    console.info("$(window).on('storage' registered ");
+        //    $(window).on('storage', function (e) {
+        //        console.info("storage event : " + (e.originalEvent.storageArea === sessionStorage));
+        //        UnreadNotificationCount();
+        //    });
+            //    UnreadNotificationCount();
+
+            UnreadNotificationCount();
         }
+    });
 
-        let currentsize = 0;
-        $(document).ready(function () {
+    function UnreadNotificationCount() {
+        let unreadNotificationCount = sessionStorage.getItem("UnreadNotificationCount");
+        if (unreadNotificationCount) {
+            if (document.getElementById("UnreadNotificationCount")) {
+                document.getElementById("UnreadNotificationCount").innerHTML = unreadNotificationCount;
+                document.getElementById("UnreadNotificationCount").style.display = 'block';
+            }
+            if (document.getElementById("UnreadNotificationCountXS")) {
+                document.getElementById("UnreadNotificationCountXS").innerHTML = unreadNotificationCount;
+                document.getElementById("UnreadNotificationCountXS").style.display = 'block';
+            }
+        }
+        window.setTimeout(() => {
+            UnreadNotificationCount();
+        }, 2000)
+    }
 
-            $('#normalFontButton').click(function () {
+    let currentsize = 0;
+    $(document).ready(function () {
 
-                var elements = $('*');
+        $('#normalFontButton').click(function () {
 
-                elements.each(function () {
+            var elements = $('*');
 
-                    var currentFontSize = parseInt($(this).css('font-size'));
+            elements.each(function () {
+
+                var currentFontSize = parseInt($(this).css('font-size'));
 
 
-                    var newFontSize = currentFontSize - currentsize
+                var newFontSize = currentFontSize - currentsize
 
-                    $(this).css('font-size', newFontSize + 'px');
-
-                });
-                currentsize = 0;
-
-            });
-            $('#increaseFontButton').click(function () {
-
-                var elements = $('*');
-                currentsize = currentsize + 1
-
-                elements.each(function () {
-
-                    var currentFontSize = parseInt($(this).css('font-size'));
-                    if (currentsize > 2) return;
-
-                    var newFontSize = currentFontSize + 1;
-
-                    $(this).css('font-size', newFontSize + 'px');
-
-                });
+                $(this).css('font-size', newFontSize + 'px');
 
             });
-            $('#decreaseFontButton').click(function () {
-                if (currentsize < -2) return;
-                currentsize = currentsize - 1
-                var elements = $('*');
+            currentsize = 0;
 
-                elements.each(function () {
+        });
+        $('#increaseFontButton').click(function () {
 
-                    var currentFontSize = parseInt($(this).css('font-size'));
+            var elements = $('*');
+            currentsize = currentsize + 1
 
-                    var newFontSize = currentFontSize - 1;
+            elements.each(function () {
 
-                    $(this).css('font-size', newFontSize + 'px');
+                var currentFontSize = parseInt($(this).css('font-size'));
+                if (currentsize > 2) return;
 
-                });
+                var newFontSize = currentFontSize + 1;
+
+                $(this).css('font-size', newFontSize + 'px');
+
+            });
+
+        });
+        $('#decreaseFontButton').click(function () {
+            if (currentsize < -2) return;
+            currentsize = currentsize - 1
+            var elements = $('*');
+
+            elements.each(function () {
+
+                var currentFontSize = parseInt($(this).css('font-size'));
+
+                var newFontSize = currentFontSize - 1;
+
+                $(this).css('font-size', newFontSize + 'px');
 
             });
 
         });
 
-    </script>
+    });
+
+</script>
 </body>
 
 </html>
