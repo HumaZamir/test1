@@ -502,7 +502,98 @@
 
   <!-- Template Main JS File -->
   <script src="https://eduservices-stg.edu.gov.qa/assets/js/main.js"></script>
+<script>
+        $(document).ready(function () {
+            $('#bwButton').click(function () {
+                $('body').toggleClass('black-and-white');
+            });
 
+            if (window.sessionStorage) {
+            //    console.info("$(window).on('storage' registered ");
+            //    $(window).on('storage', function (e) {
+            //        console.info("storage event : " + (e.originalEvent.storageArea === sessionStorage));
+            //        UnreadNotificationCount();
+            //    });
+                //    UnreadNotificationCount();
+
+                UnreadNotificationCount();
+            }
+        });
+
+        function UnreadNotificationCount() {
+            let unreadNotificationCount = sessionStorage.getItem("UnreadNotificationCount");
+            if (unreadNotificationCount) {
+                if (document.getElementById("UnreadNotificationCount")) {
+                    document.getElementById("UnreadNotificationCount").innerHTML = unreadNotificationCount;
+                    document.getElementById("UnreadNotificationCount").style.display = 'block';
+                }
+                if (document.getElementById("UnreadNotificationCountXS")) {
+                    document.getElementById("UnreadNotificationCountXS").innerHTML = unreadNotificationCount;
+                    document.getElementById("UnreadNotificationCountXS").style.display = 'block';
+                }
+            }
+            window.setTimeout(() => {
+                UnreadNotificationCount();
+            }, 2000)
+        }
+
+        let currentsize = 0;
+        $(document).ready(function () {
+
+            $('#normalFontButton').click(function () {
+
+                var elements = $('*');
+
+                elements.each(function () {
+
+                    var currentFontSize = parseInt($(this).css('font-size'));
+
+
+                    var newFontSize = currentFontSize - currentsize
+
+                    $(this).css('font-size', newFontSize + 'px');
+
+                });
+                currentsize = 0;
+
+            });
+            $('#increaseFontButton').click(function () {
+
+                var elements = $('*');
+                currentsize = currentsize + 1
+
+                elements.each(function () {
+
+                    var currentFontSize = parseInt($(this).css('font-size'));
+                    if (currentsize > 2) return;
+
+                    var newFontSize = currentFontSize + 1;
+
+                    $(this).css('font-size', newFontSize + 'px');
+
+                });
+
+            });
+            $('#decreaseFontButton').click(function () {
+                if (currentsize < -2) return;
+                currentsize = currentsize - 1
+                var elements = $('*');
+
+                elements.each(function () {
+
+                    var currentFontSize = parseInt($(this).css('font-size'));
+
+                    var newFontSize = currentFontSize - 1;
+
+                    $(this).css('font-size', newFontSize + 'px');
+
+                });
+
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>
