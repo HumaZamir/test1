@@ -48,7 +48,7 @@ html.font-scale-150 {
     content: "";
     display: inline-block;
     height: 1.3rem;
-    -webkit-mask-image: url(/assets/img/accessibility-icon.svg);
+    -webkit-mask-image: url('accessibility-icon.svg');
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-size: contain;
     width: 1rem;
@@ -127,7 +127,7 @@ html.font-scale-150 {
     background-color: #000;
     display: block;
     height: 24px;
-    -webkit-mask-image: url(/assets/img/contrast.svg);
+    -webkit-mask-image: url(contrast.svg);
     -webkit-mask-position: center center;
     -webkit-mask-repeat: no-repeat;
     width: 21px;

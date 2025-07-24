@@ -3,24 +3,24 @@
 * Bootstrap v5.3.3
 */
 
-@import url('../../lib/toastr/toastr.css');
-@import url('../../css/cover-spin.css');
+@import url('https://sch-test.edu.gov.qa/lib/toastr/toastr.css');
+@import url('https://sch-test.edu.gov.qa/css/cover-spin.css');
 
-@import url('/assets/css/authentication-styles.css');
-@import url('../../lib/flatpickr/flatpickr.min.css');
-@import url('../../lib/flatpickr/flatpickr.css');
+@import url('https://sch-test.edu.gov.qa/assets/css/authentication-styles.css');
+@import url('https://sch-test.edu.gov.qa/lib/toastr/toastr.css');
+@import url('https://sch-test.edu.gov.qa/lib/toastr/toastr.css');
 
-@import url('../../lib/toastr/toastr.css');
+@import url('https://sch-test.edu.gov.qa/lib/toastr/toastr.css');
 
-@import url('../css/custom-checkbox.css');
+@import url('https://sch-test.edu.gov.qa/assets/css/custom-checkbox.css');
 
 
-@import url('/assets/vendor/aos-plugin/aos.css');
-@import url('../css/roboto-inter.css');
+@import url('https://sch-test.edu.gov.qa//assets/vendor/aos-plugin/aos.css');
+@import url('https://sch-test.edu.gov.qa/assets/css/roboto-inter.css');
 @font-face {
     font-family: 'icomoon';
-    src: url('fonts/icomoon/icomoon.eot?6khb0b');
-    src: url('fonts/icomoon/icomoon.eot?6khb0b#iefix') format('embedded-opentype'), url('fonts/icomoon/icomoon.ttf?6khb0b') format('truetype'), url('fonts/icomoon/icomoon.woff?6khb0b') format('woff'), url('fonts/icomoon/icomoon.svg?6khb0b#icomoon') format('svg');
+    src: url('https://sch-test.edu.gov.qa/assets/fonts/icomoon/icomoon.eot?6khb0b');
+    src: url('https://sch-test.edu.gov.qa/assets/fonts/icomoon/icomoon.eot?6khb0b#iefix') format('embedded-opentype'), url('https://sch-test.edu.gov.qa/assets/fonts/icomoon/icomoon.ttf?6khb0b') format('truetype'), url('https://sch-test.edu.gov.qa/assets/fonts/icomoon/icomoon.woff?6khb0b') format('woff'), url('https://sch-test.edu.gov.qa/assets/fonts/icomoon/icomoon.svg?6khb0b#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -1900,7 +1900,7 @@ img{
     }
 
         .clients .overlay {
-            background-image: url('../img/clients-map.png');
+            background-image: url('clients-map.png');
             background-repeat: no-repeat;
             top: 0px;
             left: 0px;
@@ -3349,7 +3349,7 @@ div#emailNotVerifiedSection {
 }
 
 .stats-row {
-    background: url(../img/banner-background.png), linear-gradient(to right, var(--bg-secondary-color), var(--bg-secondary-color));
+    background: url(banner-background.png), linear-gradient(to right, var(--bg-secondary-color), var(--bg-secondary-color));
     background-size: cover;
     background-repeat: repeat;
 }
