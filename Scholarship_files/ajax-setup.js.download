@@ -1,0 +1,103 @@
+﻿
+
+const handleAjaxSuccess = (result, status, xhr) => {
+}
+
+const handleAjaxCompleted = (result, status, xhr) => {
+
+    if (sharedUtility().ExistingToken()) {
+        if (result) {
+            if (result.getResponseHeader("newToken"))
+                SetLocalStorageValue(LocalStorageKeys.Token, result.getResponseHeader("newToken"));
+
+            if (result.getResponseHeader("expirationTime")) {
+                SetLocalStorageValue(LocalStorageKeys.ExpirationTime, result.getResponseHeader("expirationTime"));
+            }
+
+            const remainingTimeInSeconds = GetRemainingTimeInSeconds();
+            const totalDuration = GetTokenTotalDuration();
+            const lowerThreshold = totalDuration * 0.25;
+            const upperThreshold = totalDuration * 0.5;
+            if (remainingTimeInSeconds > lowerThreshold && remainingTimeInSeconds <= upperThreshold) {
+                ExtendTokenSessionWithoutRedirect();
+            }
+
+
+        }
+    }
+}
+
+const handleAjaxError = (jqXHR, textStatus, errorThrown, redirectUrl = false) => {
+    //debugger
+    switch (jqXHR.status) {
+        case 401:
+            sharedUtility().RedirectUnauthorized(redirectUrl);
+            break;
+        case 403:
+            sharedUtility().RedirectAccessDenied();
+            break;
+        default:
+            const response = jqXHR.responseJSON;
+
+            if (Array.isArray(response) && response.length > 0 && response[0]?.error) {
+                if (response.length > 3) {
+                    notificationUtil.error(uiControlsSetup().GetUiControlText('lblSomeFieldsAreInvalid'));
+                } else {
+                    response.forEach(err => {
+                        if (err?.error) {
+                            notificationUtil.error(err.error);
+                        }
+                    });
+                }
+            } else if (response?.Message || response?.message) {
+                notificationUtil.error(response.Message || response.message);
+            } else {
+                notificationUtil.error(JSON.stringify(response));
+            }
+
+            break;
+    }
+};
+
+let defaults = {
+    cache: false,
+
+    beforeSend: function (xhr, options) {
+        var checkforApp = false;
+        sharedUtility().CoverSpin(true);
+        var optionurl = decodeURIComponent(sharedUtility().BaseApiUrl());
+        if (options.Mode) {
+            optionurl = options.Mode
+                === "APP" ? decodeURIComponent(sharedUtility().BaseAppUrl()) : decodeURIComponent(sharedUtility().BaseApiUrl());
+            checkforApp = true;
+        }
+
+        options.url = optionurl + options.url;
+        options.headers = sharedUtility().SharedHeader();
+
+    },
+    success: function (result, status, xhr) {
+        handleAjaxSuccess(result, status, xhr);
+    },
+
+    complete: function (result, status, xhr) {
+        handleAjaxCompleted(result, status, xhr);
+        sharedUtility().CoverSpin(false);
+    },
+
+    error: function (jqXHR, textStatus, errorThrown) {
+        handleAjaxError(jqXHR, textStatus, errorThrown);
+    }
+};
+
+let options = {
+    contentType: 'application/json',
+    dataType: 'Json',
+};
+// Extend defaults into options
+const ajaxSetupSetting = $.extend({}, defaults, options);
+
+$.ajaxSetup(ajaxSetupSetting);
+
+
+

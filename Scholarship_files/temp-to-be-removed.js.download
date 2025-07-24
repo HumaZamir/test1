@@ -1,0 +1,10 @@
+﻿
+
+const FillNewAccountForm = () => {
+    $('#QID').val('29142201061');
+    $('#QIDExpiryDate').val('2025-02-11');
+    $('#Email').val('wael_lababidi@live.com');
+    $('#Mobile').val('66806116');
+    $('#Password').val('123456');
+    $('#ConfirmPassword').val('123456');
+}

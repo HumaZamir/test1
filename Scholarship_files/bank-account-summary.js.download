@@ -1,0 +1,64 @@
+﻿const GetBankAccountSummary = (bankAccountId) => {
+    if (bankAccountId) {
+        const options = {
+            success: function (result) {
+                if (result) {
+                    FillBankAccountSummaryModal(result);
+                    const $bankAccountSummaryModal = $('#BankAccountSummaryModal');
+                    if ($bankAccountSummaryModal.length > 0) {
+                        $('#BankAccountSummaryModal').modal('show');
+                    }
+                }
+            }
+        };
+        jqClient(options).Get(`/Finance/BankAccount/GetBankAccountSummary`.concat('?bankAccountId=', bankAccountId));
+    }
+}
+
+const FillBankAccountSummaryModal = (data) => {
+    $('#entityType').val(data.entityType);
+    $('#entityAccount').val(data.entityAccount);
+    $('#accountName').val(data.accountName);
+    $('#country').val(data.country);
+    $('#bank').val(data.bank);
+    $('#bankBranch').val(data.bankBranch);
+    $('#currency').val(data.currency);
+    $('#accountNumber').val(data.accountNumber);
+    $('#ibanNumber').val(data.ibanNumber);
+    $('#swiftCode').val(data.swiftCode);
+    $('#routingNumber').val(data.routingNumber);
+    $('#sortNumber').val(data.sortNumber);
+    $('#address').val(data.address);
+    $('#balance').val(data.balance);
+    $('#isActive').prop('checked', data.isActive);
+}
+
+
+const RegisterGetBankAccountSummaryOnClickIcon = () => {
+    let viewBankAccountSummaryPermission = "";
+    if (typeof permissionsList == 'undefined') {
+        viewBankAccountSummaryPermission = userPermissions.find(c => c.backEndName == 'VIEW_BANK_ACCOUNT_SUMMARY');
+    }
+    else {
+        viewBankAccountSummaryPermission = permissionsList.find(c => c == 'VIEW_BANK_ACCOUNT_SUMMARY');
+    }
+    if (viewBankAccountSummaryPermission) {
+        const $trigger = $(".displayBankAccountSummary");
+        if ($trigger.length !== 0) {
+            $trigger.on("click", function () {
+
+                const $this = $(this);
+                const $closestSelect = $this.closest("div").find("select").first();
+                if ($closestSelect.length > 0) {
+                    const selectedValue = $closestSelect.val();
+                    if (selectedValue && !Array.isArray(selectedValue)) {
+                        GetBankAccountSummary(selectedValue);
+                    }
+                }
+            });
+        }
+    } else {
+        $(".displayBankAccountSummary").remove();
+    }
+};
+

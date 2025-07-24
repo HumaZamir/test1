@@ -1,0 +1,329 @@
+﻿let dateLang = sharedUtility().GetCookie('lang');
+let partnerLoop =false;
+/*let newsLoop =false;*/
+let bannerLoop =false;
+
+const loadMainBanner = () => {
+    const options = {
+        success: function (response) {
+            let swiperWrapper = $('#banner-swiper-wrapper');
+            bannerLoop = response.length > 1;
+            response.forEach(function (banner) {
+                let titleWords = banner.title.split(' ');
+                let firstWord = titleWords.shift();
+                let restTitle = titleWords.join(' ');
+
+                let slideHtml = `
+        <div class="swiper-slide">
+          <div class="row">
+            <div class="col-lg-7 col-sm-7 mt-5">
+              <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+                <h1 class="mb-3">
+                  <span class="accent-text">${firstWord}</span> ${restTitle}
+                </h1>
+                <p class="mb-3">${banner.summary}</p>
+                 ${banner.url && banner.url.trim() !== "" && banner.btnName && banner.btnName.trim() !== "" ? `
+              <div class="hero-buttons">
+                 <a href="${banner.url}" class="btn btn-primary me-0 me-sm-2 mx-1">${banner.btnName}</a>
+               </div>
+                 ` : ""}
+              </div>
+            </div>
+
+            <div class="col-lg-5 col-sm-5">
+              <div class="hero-image text-end" data-aos="zoom-out" data-aos-delay="300">
+                <img src="${banner.imgURL}" alt="${banner.imgName}" class="img-fluid main-img">
+                <div class="customers-badge">
+                  <div class="shape-4"><img src="/assets/img/shapes/shape-4.png" alt="shape"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+
+                swiperWrapper.append(slideHtml);
+            });
+
+
+        },
+        error: function () {
+
+        }
+    };
+    return jqClient(options).Get('/website/getbanner');
+};
+
+//const loadHomeNews = () => {
+
+//    const options = {
+//        success: function (data) {
+//            if (!Array.isArray(data) || data.length === 0) {
+//                $("#newsSection").hide();
+//                return;
+//            }
+//            newsLoop = data.length > 1;
+//            let btnMore = uiControlsSetup().GetUiControlText('lblWebHomeNewsBtn');
+//            let BtnLink = uiControlsSetup().GetUiControl('lblWebHomeNewsBtn').url;
+//            let Allbtnlink = uiControlsSetup().GetUiControl('lblWebHomeNewsAllBtn').url;
+//            let fragment = $(document.createDocumentFragment());
+//            let container = $('#news');
+//            $("#newsBtn").attr('href', `/${currentLang}${Allbtnlink}`);
+
+//            $.each(data, function (index, item) {
+
+//                const formattedDate = formatDate(item.showDate)
+//                let slide = $(`
+                
+//                        <div class="swiper-slide">
+//                            <div class="row align-items-center">
+//                                <div class="col-lg-7">
+//                                    <div class="inner-goal-image">
+//                                        <figure class="video-play-image">
+//                                            <img src="${item.mainImage}" alt="">
+//                                            <div class="overlay02 overlay"></div>
+//                                        </figure>
+//                                    </div>
+//                                </div>
+//                                <div class="col-lg-5">
+//                                    <div class="goal-content">
+//                                        <div class="pattern-overlay"></div>
+//                                        <div class="title-divider"></div>
+                                        
+//                                        <div class="row justify-content-between">
+//                                             <div class="col-md-8"><h4 class=" text-truncate-2">${item.title}</h4></div>
+//                                              <div class="col-md-4"><p class="date p-0 mb-0"><i class="far fa-calendar-alt text-primary"></i> ${formattedDate} </p></div>
+                                              
+//                                        </div>
+                                       
+//                                        <p class="goal-info text-truncate-2">${item.summary}</p>
+                                       
+//                                        <a href="/${currentLang}${BtnLink}${item.id}" class="btn btn-draft">${btnMore}</a>
+                                       
+//                                    </div>
+//                                </div>
+//                            </div>
+//                        </div>
+//                    `);
+
+//                fragment.append(slide);
+//            });
+//            container.append(fragment);
+
+//        },
+//        error: function (error) {
+
+//        }
+//    };
+//    return jqClient(options).Get('/website/gethomenews');
+//};
+//const loadHomeEvents = () => {
+//    const options = {
+//        success: function (data) {
+//            if (!Array.isArray(data) || data.length === 0) return;
+
+//            let btnMore = uiControlsSetup().GetUiControlText('lblWebHomeEventsBtn');
+//            let btnAll = uiControlsSetup().GetUiControlText('lblWebHomeEventsAllBtn');
+//            let BtnLink = uiControlsSetup().GetUiControl('lblWebHomeEventsBtn').url;
+//            let BtnAllLink = uiControlsSetup().GetUiControl('lblWebHomeEventsAllBtn').url;
+//            let fragment = $(document.createDocumentFragment());
+//            let container = $('#homeEvents');
+//            $.each(data, function (index, item) {
+//                let Title = $('<div>').text(item.title).html();
+//                let Summary = $('<div>').text(item.summary).html();
+//                let date = formatDate(item.startDate);
+//                let eventItem = $(`
+//                        <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+//                            <div class="event-item">
+//                                <div class="row w-100">
+//                                    <div class="col-lg-4 col-md-4 mb-lg-0 d-flex align-items-center">
+//                                         <img src="${item.mainImage}" title="events" class="img-fluid" alt="">
+                                        
+//                                    </div>
+//                                    <div class="col-lg-8 col-md-8 py-4">
+//                                        <div class="d-flex justify-content-between flex-wrap">
+//                                             <h3 class="text-truncate-2">${Title}</h3>
+//                                        <p class="date p-0 mb-0"><i class="far fa-calendar-alt text-primary"></i>&nbsp;${date} </p>
+//                                        </div>
+                                        
+                                       
+//                                        <div class=" event-detail"><p class="text-truncate-2">${Summary}</p></div>
+
+//                                        <a href="/${currentLang}${BtnLink}${item.id}" class="btn btn-outline-primary">${btnMore}</a>
+//                                    </div>
+//                                </div>
+//                            </div>
+//                        </div>
+//                    `);
+
+//                fragment.append(eventItem);
+//            });
+//            fragment.append(`<div class="col-12 text-center mt-4"><a href="/${currentLang}${BtnAllLink}" class="btn btn-primary">${btnAll}</a></div>`);
+//            container.append(fragment);
+//        },
+//        error: function (error) {
+
+//        }
+//    };
+//    jqClient(options).Get('/website/gethomeevents');
+//};
+
+const loadPartners = () => {
+    const options = {
+        success: function (data) {
+            const container = $('#partnersSection');
+
+            const swiper = $('<div class="swiper clients-swiper"></div>');
+            const wrapper = $('<div class="swiper-wrapper align-items-center"></div>');
+            partnerLoop = data.length > 5;
+            data.forEach(item => {
+                const slide = $(`
+        <div class="swiper-slide">
+          <div class="img-container">
+            <img src="${item.logo.url}" alt="${item.name}" class="affiliation-logo" />
+          </div>
+        </div>
+      `);
+                wrapper.append(slide);
+            });
+
+            const pagination = $('<div class="swiper-pagination"></div>');
+
+            swiper.append(wrapper).append(pagination);
+            container.append(swiper);
+            $("#partnersBtn").attr('href', `${uiControlsSetup().GetUiControl('lblWebHomeEventsAllBtn').url}`);
+        }
+    };
+    return jqClient(options).Get('/website/getentities');
+
+}
+//function formatDate(dateTimeString) {
+//    let date = new Date(dateTimeString);
+
+//    const options = {
+//        day: '2-digit',
+//        month: 'short',
+//        year: 'numeric'
+//    };
+
+//    return date.toLocaleDateString(dateLang === 'ar' ? 'ar-QA-u-nu-latn' : 'en-GB', options);
+//}
+
+
+const initHomePage = () => {
+    InitNavbarSection();
+    loadMainBanner().then(() => {
+        new Swiper('.init-swiper', {
+            loop: bannerLoop,
+            speed: 1000,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 'auto',
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: 'true'
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                },
+                480: {
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                },
+
+                99: {
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                }
+            }
+        });
+    });
+    loadHtmlIntoWeb('stats', 'HomeStats')
+        .then(() => {
+            initCountdown(sharedUtility().GetCookie('lang'));
+        });
+    loadHtmlIntoWeb('about', 'HomeAbout');
+    loadHtmlIntoWeb('services', 'HomeServices');
+    //loadHtmlIntoWeb('testimonials', 'HomeTestimonials');
+    //loadHomeNews().then(() => {
+    //    new Swiper('.news-swiper', {
+    //        speed: newsLoop,
+    //        loop: true,
+    //        autoplay: {
+    //            delay: 5000,
+    //            disableOnInteraction: false,
+    //        },
+    //        slidesPerView: 'auto',
+    //        pagination: {
+    //            el: '.swiper-pagination',
+    //            type: 'bullets',
+    //            clickable: 'true',
+    //        },
+    //        breakpoints: {
+    //            320: {
+    //                slidesPerView: 1,
+    //                spaceBetween: 0
+    //            },
+
+    //            480: {
+    //                slidesPerView: 1,
+    //                spaceBetween: 0
+    //            },
+
+    //            992: {
+    //                slidesPerView: 1,
+    //                spaceBetween: 0
+    //            }
+    //        }
+
+    //    });
+    //});
+    loadPartners().then(() => {
+        new Swiper('.clients-swiper', {
+            speed: 1000,
+            loop: partnerLoop,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 'auto',
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: 'true',
+            },
+            breakpoints: {
+                320: {
+                    spaceBetween: 40
+                },
+
+                480: {
+                    spaceBetween: 60
+                },
+                640: {
+                    spaceBetween: 80
+                },
+
+                992: {
+                    slidesPerView: 2,
+                    spaceBetween: 0
+                }
+            }
+        });
+    });
+/*    loadHomeEvents();*/
+    loadHtmlIntoWeb('home-progress', 'HomeProgress')
+        .then(() => {
+            new PureCounter();
+        });
+    loadHtmlIntoWeb('features', 'HomeFeatures');
+    loadHtmlIntoWeb('contact', 'HomeContact');
+};

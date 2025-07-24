@@ -1,0 +1,642 @@
+﻿//     const sharedUtility = sharedUtility();
+// sharedUtility.InitializeTooltip();
+var typingTimer;
+var doneTypingInterval = 1000; // 1 second
+
+function showModalBackDrop(modal) {
+    var maxZIndex = Math.max.apply(null, $('.modal:visible').map(function () {
+        return parseInt($(this).css('z-index')) || 1000;
+    }).get());
+
+    $('.modal-backdrop').css('z-index', maxZIndex + 1);
+    $(modal).css('z-index', maxZIndex + 2);
+
+    $('.modal-backdrop').show();
+    $(modal).show();
+}
+const getSysLogoUrl = () => {
+    const options = {
+        success: function (result) {
+            if (result) {
+                const { FaviconSetting, WebLogoSetting, SessionExpire } = result;
+                if (FaviconSetting) {
+                    $("#logoFaviconImageId").attr('href', FaviconSetting);
+
+                }
+                else {
+                    $("#logoFaviconImageId").attr('href', "/assests/img/moe-logo2.png");
+
+
+                }
+                if (WebLogoSetting) {
+                    $("#WebLogo").attr('src', WebLogoSetting);
+
+                }
+                else {
+                    $("#WebLogo").attr('src', "/assests/img/logo.png");
+
+
+                }
+            }
+        },
+    };
+    jqClient(options).Get("/Home/GetSystemLogo");
+
+}
+
+$(document).ready(async function () {
+    getSysLogoUrl();
+    
+    $('#offcanvasTop').on('shown.bs.offcanvas', function () {
+        $('#siteSearchText').focus();
+    });
+    
+    $('.modal').on('shown.bs.modal', function () {
+        showModalBackDrop(this);
+    });
+
+
+    $('.modal').on('hidden.bs.modal', function () {
+        var maxZIndex = Math.max.apply(null, $('.modal:visible').map(function () {
+            return parseInt($(this).css('z-index')) || 1080;
+        }).get());
+        $('.modal-backdrop').css('z-index', maxZIndex - 2);
+
+    });
+
+    $("#siteSearchbutton").on("click", function (e) {
+        e.preventDefault();  // Prevent form submission
+        let value = $('#siteSearchText').val();
+        window.location.href = `/${currentLang}/home/search?query=${encodeURIComponent(value)}`;
+
+    });
+
+    $('#siteSearchText').keydown(function (event) {
+        if (event.keyCode === 13) {  // 13 represents the Enter key
+            event.preventDefault();  // Prevent form submission
+            var value = $('#siteSearchText').val();
+            window.location.href = `/${currentLang}/home/search?query=${encodeURIComponent(value)}`;
+        }
+    });
+
+    $('#siteSearchText').on('blur', function () {
+        setTimeout(() => {
+            var resultList = $('#searchresult');
+            resultList.empty(); // Clear search results
+            resultList.hide();
+
+        }, 400);
+    });
+
+    $('#siteSearchText').on('focus', function () {
+        var resultList = $('#searchresult');
+        //resultList.empty(); // Clear search results
+        resultList.hide();
+    });
+
+    $('#siteSearchText').keyup(function (event) {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(performSearch, doneTypingInterval);
+    });
+});
+
+
+// Perform the search
+const performSearch = () => {
+    var searchQuery = $('#siteSearchText').val();
+    if (searchQuery.trim() !== '') {
+        // Check if the user has stopped typing for the specified interval
+        var elapsedTime = Date.now() - typingTimer;
+        var _url = "/Home/GetSearchResult?page=1" + "&query=" + searchQuery;
+        if (elapsedTime >= doneTypingInterval) {
+            const options = {
+                success: function (response) {
+                    displaySearchResults(response);
+                },
+                error: function (xhr) {
+
+                }
+            };
+            return jqClient(options).Get(_url);
+        }
+    }
+}
+
+function displaySearchResults(results) {
+    var resultList = $('#searchresult');
+    resultList.empty(); // Clear previous results
+
+    // Append new search results
+    for (var i = 0; i < results.value.length; i++) {
+        var result = results.value[i];
+        var listItem = $('<li>').addClass('search-list');
+        var link = $('<a>').attr('href', result.urlLink).attr('target', result.target).text(currentLang == "ar" ? result.titleAr : result.titleEn).addClass('text-truncate');
+        //var description = $('<div>').html(result.desc).addClass('decrip');
+        listItem.append(link);
+        resultList.append(listItem);
+    }
+
+    if (resultList.length) {
+        resultList.show();
+    }
+}
+
+const getUrlParams = (paramName) => {
+    const params = new URLSearchParams(window.location.search);
+    paramName = paramName.toLowerCase();
+
+    for (const [key, value] of params.entries()) {
+        if (key.toLowerCase() === paramName) {
+            return value;
+        }
+    }
+
+    return null;
+}
+
+const setUrlParameter = (key, value)=> {
+    // Get the current URL parameters
+    var searchParams = new URLSearchParams(window.location.search);
+
+    // Set or update the specified parameter
+    searchParams.set(key, value);
+
+    // Update the URL with the modified parameters
+    var newUrl = window.location.pathname + '?' + searchParams.toString();
+    window.history.replaceState(null, null, newUrl);
+}
+
+function showModalBackDrop(modal) {
+    var maxZIndex = Math.max.apply(null, $('.modal:visible').map(function () {
+        return parseInt($(this).css('z-index')) || 1000;
+    }).get());
+
+    $('.modal-backdrop').css('z-index', maxZIndex + 1);
+    $(modal).css('z-index', maxZIndex + 2);
+
+    $('.modal-backdrop').show();
+    $(modal).show();
+}
+
+const loadHtmlIntoWeb = (containerId, backEndName) => {
+    const options = {
+        dataType: 'html',
+        success: function (html) {
+            if (html !== '') {
+                $('#' + containerId).html(html);
+            }
+        },
+        error: function (xhr) {
+
+        }
+    };
+  return jqClient(options).Get(`/website/getweblayout?backEndName=${backEndName}`);
+}
+const loadMainNavbar = () => {
+    const options = {
+        success: function (data) {
+            let navContainer = $("#navmenu ul");
+            let fragment = $(document.createDocumentFragment());
+
+            $.each(data, function (index, navItem) {
+                fragment.append(createNavItem(navItem));
+            });
+
+            navContainer.append(fragment);
+        },
+        error: function () {
+
+        }
+    };
+    return jqClient(options).Get('/website/getnavbar');
+};
+function createNavItem(item) {
+    let dropdownClass = '';
+    let isNavParent = (item.children.length > 0)
+    if (isNavParent) {
+        dropdownClass = 'dropdown';
+    }
+    let $li = $("<li>").addClass(dropdownClass);
+    let url = item.isInternal ? `/${currentLang}${item.url}` : item.url;
+    let $a = $("<a>").attr("href", url || "#")
+        .append($("<span>").text(item.title));
+    if (isNavParent) {
+        $a.append($("<i>").addClass("fa fa-chevron-down toggle-dropdown"));
+    }
+        
+
+    if (item.target) {
+        $a.attr("target", item.target);
+    }
+
+    $li.append($a);
+
+    if (item.children && item.children.length > 0) {
+        let $ul = $("<ul>");
+        let fragment = $(document.createDocumentFragment());
+
+        $.each(item.children, function (index, child) {
+            fragment.append(createNavItem(child));
+        });
+
+        $ul.append(fragment);
+        $li.append($ul);
+    }
+
+    return $li;
+}
+
+
+function removeParameterFromUrl(url, parameterKey) {
+    var baseUrl = url.split('?')[0];
+    var urlQueryString = '?' + url.split('?')[1];
+    var newParamQueryString = '';
+
+    if (urlQueryString.indexOf(parameterKey + '=') > -1) {
+        var params = urlQueryString.split('&');
+
+        for (var i = 0; i < params.length; i++) {
+            var parameterName = params[i].split('=')[0];
+            if (parameterName !== parameterKey) {
+                newParamQueryString += params[i] + '&';
+            }
+        }
+        newParamQueryString = newParamQueryString.slice(0, -1);
+
+        return baseUrl + newParamQueryString;
+    }
+    return url;
+}
+
+const GetSiteDocument = () => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const file = urlParams.get('file');
+    if (file != null) {
+        const options = {
+            success: function (result) {
+
+                if (result != null && result.fileURL != null) {
+                    OpenFileModal('modal-fullscreen', result.title, result.fileURL, result.fileName);
+                } else {
+                    let url = window.location.href;
+                    url = removeParameterFromUrl(url, '?file');
+                    window.history.replaceState(null, null, url);
+                }
+            }
+
+        };
+        jqClient(options).Get(`/Website/GetSiteDocument?Skey=${file}`);
+    }
+}
+
+
+function OpenFileModal(size, title, page, fileName) {
+    size = size || 'xl';
+    const icon = commonUtil.getFileIcon(fileName)?.trim();
+    const $content = $('#FileModalContent');
+    $content.empty();
+    if (icon === commonUtil.FILES_TYPE.IMAGE) {
+        const img = $('<img>', { class: 'img-fluid', src: page });
+        $content.html(img);
+    }
+    else if (icon === commonUtil.FILES_TYPE.PDF) {
+        if (/iPod|iPhone|iPad/i.test(navigator.userAgent)) {
+            window.location.href = page;
+            return;
+        }
+        const iframe = $('<iframe>', {
+            class: 'fileIframe',
+            src: page,
+            css: { width: '100%', height: '80vh' }
+        });
+        $content.html(iframe);
+    }
+    else if (icon === commonUtil.FILES_TYPE.VIDEO) {
+        const video = $('<video>', { controls: true, class: 'w-100' });
+        const source = $('<source>', { src: page, type: 'video/mp4' });
+        video.append(source);
+        $content.html(video);
+    }
+
+    const $modalDialog = $('#FileModalDialog');
+    $modalDialog.attr('class', `modal-dialog ${size}`);
+
+    $("#FileModal-Title").text(title);
+    $("#FileModal").modal('show');
+}
+$('.btn-close').on('click', function () {
+    let url = window.location.href;
+    url = removeParameterFromUrl(url, '?file');
+    window.history.replaceState(null, null, url);
+});
+
+$('#FileModalclose').on('click', function () {
+    let url = window.location.href;
+    url = removeParameterFromUrl(url, '?file');
+    window.history.replaceState(null, null, url);
+});
+
+const initCountdown = (language = 'ar') => {
+
+    const container = document.getElementById("countdownContainer");
+    if (!container) {
+        return;
+    }
+
+    const openDate = parseDate(container.dataset.open);
+    const closeDate = parseDate(container.dataset.close);
+    const titleElement = container.querySelector('#countdownTitle');
+    const timerElement = container.querySelector('#countdownTimer');
+
+
+    const words = {
+        en: {
+            day: ['Day', 'Days'],
+            hour: ['Hour', 'Hours'],
+            minute: ['Minute', 'Minutes']
+        },
+        ar: {
+            day: ['يوم', 'يومين', 'أيام'],
+            hour: ['ساعة', 'ساعتين', 'ساعات'],
+            minute: ['دقيقة', 'دقيقتين', 'دقائق']
+        }
+    };
+
+    let targetDate, currentPhase;
+
+    function parseDate(dateStr) {
+        return new Date(dateStr.includes('T') ? dateStr : dateStr + 'T00:00:00');
+    }
+
+
+    function pluralize(value, type) {
+        if (language === 'en') {
+            const word = value === 1 ? words.en[type][0] : words.en[type][1];
+            return `${value} ${word}`;
+        } else if (language === 'ar') {
+            if (value === 1) {
+                return words.ar[type][0];
+            } else if (value === 2) {
+                return words.ar[type][1]; 
+            } else if (value >= 3 && value <= 10) {
+                return `${value} ${words.ar[type][2]}`; 
+            } else {
+                return `${value} ${words.ar[type][0]}`; 
+            }
+        }
+    }
+
+function updatePhase() {
+    const now = new Date();
+
+    if (now < openDate) {
+        currentPhase = 'before-open';
+        targetDate = openDate;
+    } else if (now >= openDate && now <= closeDate) {
+        currentPhase = 'after-open';
+        targetDate = closeDate;
+    } else {
+        currentPhase = 'after-close';
+        targetDate = null;
+    }
+
+    titleElement.querySelectorAll('[data-phase]').forEach(span => {
+        span.style.display = 'none';
+    });
+
+    const currentSpan = titleElement.querySelector(`[data-phase="${currentPhase}"]`);
+    if (currentSpan) currentSpan.style.display = '';
+
+    timerElement.style.display = currentPhase === 'after-close' ? 'none' : '';
+
+    container.querySelectorAll('a[data-phase]').forEach(btn => {
+        btn.style.display = 'none';
+    });
+
+    const currentButton = container.querySelector(`a[data-phase="${currentPhase}"]`);
+    if (currentButton) currentButton.style.display = '';
+}
+
+    function updateCountdown() {
+        if (currentPhase === 2) return;
+
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            updatePhase();
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+        let parts = [];
+
+        if (days > 0) parts.push(pluralize(days, 'day'));
+        if (hours > 0 || days > 0) parts.push(pluralize(hours, 'hour'));
+        parts.push(pluralize(minutes, 'minute'));
+
+        
+        let output = '';
+
+        if (language === 'ar') {
+            if (parts.length === 3) {
+                output = `${parts[0]} و ${parts[1]} و ${parts[2]}`;
+            } else if (parts.length === 2) {
+                output = `${parts[0]} و ${parts[1]}`;
+            } else if (parts.length === 1) {
+                output = parts[0];
+            }
+        } else { 
+            output = parts.join(', ');
+        }
+
+        timerElement.innerText = output;
+    }
+
+    updatePhase();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+const CreateTemplate = (item) => {
+
+    let template = `
+    <div id = "${item.id}_notification" class="toast notification fade show" role = "alert" aria - live="assertive" aria - atomic="true" data - bs - autohide="false" >
+        <div class="notification-header">
+             <p class="m-0" ><span class="icon"><i class="far fa-bell"></i></span> <span class="text-trucate-1 title"  title="${item.title}">${item.title}</span></p>
+             <button type="button" class="" data=""  bs="" dismiss="toast" aria="" label="Close" onclick="UpdateNotificationReadCount('${item.id}')"><i class="fas fa-trash"></i></button>
+        </div>
+             <div class="notification-body">
+                  ${item.description}
+                  <div class="date-time"><span class="icon"><i class="fa-regular fa-calendar"></i></span>${item.issuedDate}</div>
+            </div>
+        
+                </div> `;
+
+    return template;
+}
+
+let NotificationsList = null;
+let NotificationsCount = null;
+const GetNotificationsListForMainPage = () => {
+    if (sharedUtility().ExistingToken()) {
+
+        let page = 1;
+        let isRead = false;
+        const options = {
+            success: function (data) {
+                PopulateNotificationsInSideBar(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                switch (jqXHR.status) {
+                    case 401:
+                        $('#notificationsListId').hide();
+                        break;
+                    case 403:
+                        $('#notificationsListId').hide();
+                        break;
+
+                    default:
+                }
+            }
+        };
+
+        let data = { Page: page, IsRead: isRead };
+        jqClient(options).Post("/Notification/GetNotificationsList", data);
+    }
+    else {
+        $('#notificationsListId').hide();
+    }
+}
+
+const PopulateNotificationsInSideBar = (data) => {
+    NotificationsList = data.value;
+    NotificationsCount = data.key;
+    $('#notificationsCount').html(NotificationsCount);
+    $('#notificationsListId').show();
+    $('#toast-container-list').html('');
+    $.each(data.value, function (index, item) {
+
+        $('#toast-container-list').append(CreateTemplate(item));
+    });
+}
+
+const UpdateNotificationReadCount = (id) => {
+   
+    const options = {
+        success: function (data) {
+            if (data) {
+                let lengthBeforeFilter = 0;
+                let lengthAfterFilter = 0;
+                if (NotificationsList && NotificationsList.length > 0) {
+                    lengthBeforeFilter = NotificationsList.length;
+                }
+                NotificationsList = NotificationsList.filter(function (item) {
+                    return item.id != id;
+                });
+                if (NotificationsList && NotificationsList.length > 0) {
+                    lengthAfterFilter = NotificationsList.length;
+                }
+
+
+
+                $("#" + id + "_notification").animate({
+                    marginLeft: "100%", // Slide right by moving to the right
+                    opacity: 0           // Fade out
+                }, "fast", function () {
+                    // Remove the element from the DOM after the animation is complete
+                    $(this).remove();
+                });
+                if (lengthAfterFilter != lengthBeforeFilter && NotificationsCount > 0)
+                    NotificationsCount--;
+                $('#notificationsCount').html(NotificationsCount);
+
+            }
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            switch (jqXHR.status) {
+                case 401:
+                    RemoveElement('notificationsListId');
+                    break;
+                case 403:
+                    RemoveElement('notificationsListId');
+                    break;
+
+                default:
+            }
+        }
+    };
+
+    jqClient(options).Get("/Notification/UpdateNotificationReadCount".concat("?id=", id));
+
+}
+const ClearAllNotifications = () => {
+
+    const options = {
+        success: function (data) {
+            PopulateNotificationsInSideBar(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            switch (jqXHR.status) {
+                case 401:
+                    RemoveElement('notificationsListId');
+                    break;
+                case 403:
+                    RemoveElement('notificationsListId');
+                    break;
+
+                default:
+            }
+        }
+    };
+
+    jqClient(options).Get("/Notification/SetAllNotificationsAsRead");
+
+}
+
+
+
+$('#clearNotificationsBtnId').click(function (event) {
+
+    //$('.offcanvas offcanvas-end').removeClass('show');
+    notificationUtil.confirmation(
+        {
+            title: uiControlsSetup().GetUiControlText('lblAreYouSureWantToClearNotifications'),
+            body: '',
+            okText: uiControlsSetup().GetUiControlText('lblYes'),
+            cancelText: uiControlsSetup().GetUiControlText('lblNo')
+        },
+        function () {
+            ClearAllNotifications();
+        },
+        function () {
+        },
+    );
+
+});
+
+$(document).ready(async function () {
+    GetNotificationsListForMainPage();
+    loadMainNavbar().then(() => {
+        document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+            navmenu.addEventListener('click', function (e) {
+                e.preventDefault();
+                this.parentNode.classList.toggle('active');
+                this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+                e.stopImmediatePropagation();
+            });
+        });
+    });
+    const pathSegments = window.location.pathname.toLowerCase().split('/').filter(Boolean);
+    if (!(pathSegments.length >= 2 && pathSegments[1] === "finance")) {
+        loadHtmlIntoWeb('footer', 'WebFooter');
+    }
+    GetSiteDocument();
+    
+});
+
+

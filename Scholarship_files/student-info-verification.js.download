@@ -1,0 +1,94 @@
+﻿let allowRefreshMobileOTP = true;
+
+const IsEmailVerified = () => {
+
+    if (sharedUtility().ExistingToken()) {
+
+        let userType = sharedUtility().ParseJwt(GetLocalStorageValue(LocalStorageKeys.Token))[Enums.UserProfileClaim.UserType];
+
+        if (userType === Enums.UserType.Student) {
+            const options = {
+                success: function (result) {
+                    if (result.data == false) {
+
+                        $('#emailNotVerifiedSection').show();
+                        //ShowPhase(result.data.phase, result.data.serverMessage);
+                    } else {
+                        $('#emailNotVerifiedSection').remove();
+
+                    }
+                },
+            };
+            jqClient(options).Get("/Account/IsEmailVerified");
+        }
+    }
+}
+
+
+$('#ResendEmailForVerificationId').click(function () {
+    if (sharedUtility().ExistingToken()) {
+
+        let userType = sharedUtility().ParseJwt(GetLocalStorageValue(LocalStorageKeys.Token))[Enums.UserProfileClaim.UserType];
+
+        if (userType === Enums.UserType.Student) {
+            const options = {
+                success: function (result) {
+
+                    notificationUtil().confirmation(
+                        {
+                            title: uiControlsSetup().GetUiControlText('lblAccountVerification'),
+                            body: uiControlsSetup().GetUiControlText('lblEmailSentCheckYourEmail'),
+                            okText: uiControlsSetup().GetUiControlText('lblOk'),
+                            showCancelButton: false
+                        },
+                        function () {
+                        },
+                        function (result) {
+
+
+                        },
+
+                    );
+                },
+            };
+            jqClient(options).Get("/Account/ResendEmailForVerification");
+        }
+    }
+})
+
+
+
+const _StartOTPTimer = (otpValidTime) => {
+    if (otpValidTime) {
+        let value = parseInt(otpValidTime, 10) * 60;
+
+        if (!isNaN(value) && value > 0) {
+
+            $('#UpdateStudentUserInfoBtnId').text(uiControlsSetup().GetUiControlText('lblVerfiyMobile'));
+
+            const msgTemplate = 'OTP expires in {otpValidTimeInSeconds} seconds';
+            //const msgTemplate = uiControlsSetup().GetUiControlText('lblOTPExpiresIn');
+            const intervalId = setInterval(() => {
+                if (value <= 0) {
+                    clearInterval(intervalId);
+                    //$('#mobileOTPTimerId').html(uiControlsSetup().GetUiControlText('lblOTPHasExpired'));
+                    $('.mobileVerificationOTPSection').hide();
+                    $('.mobileVerificationSection').show();
+                    allowRefreshMobileOTP = true;
+                    //const formattedMessage = msgTemplate.replace('{otpValidTimeInSeconds}', 0);
+                    $('#mobileOTPTimerId').html('');
+                    $('#UpdateStudentUserInfoBtnId').text(uiControlsSetup().GetUiControlText('lblSendMobileOTPRequest'));
+
+
+                } else {
+                    const formattedMessage = msgTemplate.replace('{otpValidTimeInSeconds}', value);
+                    $('#mobileOTPTimerId').html(formattedMessage);
+                    value--;
+                }
+            }, 1000);
+        }
+    }
+};
+
+
+

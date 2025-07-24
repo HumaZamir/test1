@@ -1,0 +1,64 @@
+﻿//debugger
+
+
+const InitNavbarSection = () => {
+
+    if (sharedUtility().ExistingToken()) {
+
+        let lang = sharedUtility().GetCookie('lang');
+        // Show profile dropdown and hide login link
+        $(".dropdownsection1").show();
+        $(".dropdownsection2").hide();
+        tokenData = sharedUtility().ParseJwt(GetLocalStorageValue(LocalStorageKeys.Token));
+        //debugger
+        $('#navbarDropdown').html(getFirstName(lang == 'ar' ? tokenData[Enums.UserProfileClaim.FullNameAr] : tokenData[Enums.UserProfileClaim.FullNameEn], lang == 'ar'));
+
+        let userType = sharedUtility().ParseJwt(GetLocalStorageValue(LocalStorageKeys.Token))[Enums.UserProfileClaim.UserType];
+
+        if (userType !== Enums.UserType.Student) {
+            $('.student-parts-only').remove();
+        } 
+        if (userType !== Enums.UserType.Ministry) {
+            $('.ministry-parts-only').remove();
+        }
+
+        $("#profileDropdown").show();
+        $(".login-or-register").hide();
+
+
+    } else {
+        // Show login link and hide profile dropdown
+        //$(".dropdownsection2").show();
+        //$(".dropdownsection1").hide();
+
+        $("#profileDropdown").hide();
+        $(".login-or-register").show();
+    }
+
+    // Logout function
+    $("#logoutBtn").click(function () {
+        // Remove token from localStorage and reload page to show login link
+        //RemoveLocalStorageValue(LocalStorageKeys.Token);
+
+        sharedUtility().RedirectUnauthorized();
+    });
+}
+
+const getFirstName = (fullName, isArabic) => {
+    if (!fullName) return '';
+
+    const parts = fullName.trim().split(/\s+/); // split by one or more spaces
+
+    if (isArabic) {
+        // Common Arabic compound names - can be expanded as needed
+        const compoundStarts = ['عبد', 'نور', 'فخر', 'شمس', 'سيف'];
+
+        if (parts.length >= 3 && compoundStarts.includes(parts[0])) {
+            return parts[0] + ' ' + parts[1]; // return compound name
+        }
+    }
+
+    return parts[0]; // otherwise, return the first word
+}
+
+
