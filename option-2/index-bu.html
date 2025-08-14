@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>بوابة معارف لخدمات الجمهور</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/moe-logo2.png" rel="icon">
+  <link href="assets/img/moe-logo2.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style-ar.css" rel="stylesheet">
+    <link href="assets/css/accessibility.css" rel="stylesheet">
+
+</head>
+
+<body>
+  
+<!-- ======= Top Bar ======= -->
+<div id="topbar" ></div>
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container position-relative d-flex align-items-center justify-content-between flex-wrap">
+        <div class="logo-nav">
+            <a class="logo" href="index.html">
+                <img  alt="Ministry of Education and Higher Education" src="assets/img/logo.png">
+            </a>
+        </div>
+        <div class="nav-header">
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#">
+                            <span> الأسئلة الشائعة</span>
+                            <i class="fa fa-chevron-down toggle-dropdown"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="#"> الموارد البشرية </a>
+                            </li>
+                            <li>
+                                <a href="#"> القسائم التعليمية </a>
+                            </li>
+                            <li>
+                                <a href="#"> البعثات </a>
+                            </li>
+                            <li>
+                                <a href="#"> المدارس الخاصة </a>
+                            </li>
+                            <li>
+                                <a href="#"> شؤون المدارس </a>
+                            </li>
+                            <li>
+                                <a href="#"> معادلة الشهادات الجامعية </a>
+                            </li>
+                            </ul>
+                        </li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none fa-solid fa-bars"></i>
+            </nav>
+            <div class="header-btn">
+                <div class="dropdown accessibility-dropdown" data-bs-auto-close="outside">
+                    <button class="btn btn-outline-primary dropdown-toggle accessibility" type="button" data-bs-toggle="dropdown" id="contrast" aria-expanded="false"></button>
+                    <ul class="dropdown-menu" aria-labelledby="contrast">
+                        <li>
+                            <button class="dropdown-item" type="button">
+                                <div class="font-resizing-container">
+                                    <div class="">Adjust font sizing</div>
+                                    <div class="font-slider">
+                                        <a href="#" class="min-font" title="Link to decrease the font size" id="decrease">T-</a>
+                                        <a href="#" class="reset-font" title="Link to restore default font size" id="reset">Set Default</a>
+                                        <a href="#" class="max-font" title="Link to increase the font size" id="increase">T+</a>
+                                    </div>
+                                </div>
+                            </button>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <button class="dropdown-item" type="button">
+                                <div class="contrast">
+                                    <p class="m-0">High Contrast </p>
+                                    <div class="contrast-icon" id="bwButton"></div>
+                                </div>
+                            </button>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <a href="#" class="btn btn-outline-primary">EN</a>
+                <a id="loginLink" class="btn-getstarted">تسجيل دخول</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- End Header -->
+
+<main class="main">
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+        <div class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-7 text-center">
+
+
+
+
+                    <h1><span>معارف</span> لخدمات الجمهور</h1>
+                    <p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات الإلكترونية الخاصة بوزارة التربية والتعليم والتعليم العالي تحت مظلة واحدة ومتكاملة وتلبي احتياجاتهم المتعددة بسهولة ويسر.</p>
+                </div>
+                
+               
+            </div>
+        </div>
+    </section>
+  
+    <section class="services section">
+            <div class="container">
+                 <div style="background-color: #fff;border-radius: 0.75rem;padding: 2rem;">
+                      <div class="row justify-content-center">
+                     <div class="col-12">
+                        <div class="search-filter section">
+                            <div class="row justify-content-between align-items-center gx-3">
+                                <div class="col-lg-9 order-lg-1 order-2">
+                                    <div class="row gx-3">
+                                            <div class="col-md-4">
+                                                <select class="form-select">
+                                                    <option>Service Category</option>
+                                                    <option>خدمات التحقق من الشهادات و المستندات</option>
+                                                    <option>خدمات استخراج الشهادات والمعادلة المدرسية </option>
+                                                    <option>خدمات التسارع وتحسين المعدل</option>
+                                                    <option>خدمات المستثمرون-المدارس الخاصة</option>
+                                                    <option>خدمات الموافقة المسبقة، معادلة ومصادقة الشهادات الجامعية.</option>
+                                                    <option>الخدمات الإضافية للتسجيل والنقل</option>
+                                                    <option>خدمات التسجيل والنقل</option>
+                                                    <option>خدمات الأنشطة والبرامج الطلابية</option>
+                                                    <option>خدمات الطلبة من ذوي الاعاقة</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 ">
+                                                <select class="form-select">
+                                                    <option>Beneficiary</option>
+                                                    <option>الجميع</option>
+                                                    <option>قطري</option>
+                                                    <option>مقيم</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-select">
+                                                    <option>Service Status</option>
+                                                    <option>مؤتمتة</option>
+                                                    <option>غير مؤتمتة</option>
+                                                </select>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 order-lg-2 order-1">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="بحث">
+                                        <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                     </div>
+                </div>
+                <div class="row mt-5 g-0">
+                    <div class="col-md-3 mb-3 tabs-dropdown">
+                        <select class="form-select" id="tabDropdown">
+                            <option value="service-1">خدمات التحقق من الشهادات و المستندات</option>
+                            <option value="service-2" >خدمات استخراج الشهادات والمعادلة المدرسية </option>
+                            <option value="service-3">خدمات التسارع وتحسين المعدل</option>
+                            <option value="service-4">خدمات المستثمرون-المدارس الخاصة</option>
+                            <option value="service-5">خدمات الموافقة المسبقة، معادلة ومصادقة الشهادات الجامعية.</option>
+                            <option value="service-6">الخدمات الإضافية للتسجيل والنقل</option>
+                            <option value="service-7">خدمات التسجيل والنقل</option>
+                            <option value="service-8">خدمات الأنشطة والبرامج الطلابية</option>
+                            <option value="service-9" >خدمات الطلبة من ذوي الاعاقة</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 vertical-nav">
+                        <div class="nav flex-column nav-pills bg-white" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link " id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-1" type="button" role="tab" aria-controls="service-1" aria-selected="true">خدمات التحقق من الشهادات و المستندات</button>
+                            <button class="nav-link active" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-2" type="button" role="tab" aria-controls="service-2" aria-selected="true">خدمات استخراج الشهادات والمعادلة المدرسية </button>
+                            <button class="nav-link" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-3" type="button" role="tab" aria-controls="service-3" aria-selected="true">خدمات التسارع وتحسين المعدل</button>
+                            <button class="nav-link" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-4" type="button" role="tab" aria-controls="service-4" aria-selected="true">خدمات المستثمرون-المدارس الخاصة</button>
+                            <button class="nav-link" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-5" type="button" role="tab" aria-controls="service-5" aria-selected="true">خدمات الموافقة المسبقة، معادلة ومصادقة الشهادات الجامعية.</button>
+                            <button class="nav-link" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-6" type="button" role="tab" aria-controls="service-6" aria-selected="true">الخدمات الإضافية للتسجيل والنقل</button>
+                            <button class="nav-link" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-7" type="button" role="tab" aria-controls="service-7" aria-selected="true">خدمات التسجيل والنقل</button>
+                            <button class="nav-link" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-8" type="button" role="tab" aria-controls="service-8" aria-selected="true">خدمات الأنشطة والبرامج الطلابية</button>
+                            <button class="nav-link" id="service-1-tab" data-bs-toggle="pill" data-bs-target="#service-9" type="button" role="tab" aria-controls="service-9" aria-selected="true">خدمات الطلبة من ذوي الاعاقة</button>
+
+                        </div>
+                    </div>
+                    <!-- Tabs content -->
+                    <div class="col">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade" id="service-1" role="tabpanel" aria-labelledby="service-1-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row g-2">
+                                                        <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                        <div class="col"><h5 class="card-title">التحقق من شهادة مدرسية بطلب من جهة رسمية داخل أو خارج دولة قطر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show active" id="service-2" role="tabpanel" aria-labelledby="service-2-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إصدار شهادة كشف درجات مدرسية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/2.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إصدار إفادة مدرسية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/3.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إصدار إفادة تسجيل مدرسي</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/4.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إصدار إفادة تسلسل دراسي</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/5.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">معادلة شهادة مدرسية ثانوية لحاملي البطاقة الشخصية القطرية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/6.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">معادلة شهادة مدرسية ثانوية لغير حاملي البطاقة الشخصية القطرية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/7.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">دمج بيانات طالب سابق حاصل على رقم شخصي جديد</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/8.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تصديق وثيقة مدرسية صادرة عن مدرسة أجنبية داخل دولة قطر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/9.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">معادلة شهادة مدرسية لصفوف نقل</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/10.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">الموافقة على التقدم لاختبار في المجلس الثقافي البريطاني</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/11.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">الموافقة على الدراسة في مدرسة خارج دولة قطر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="service-3" role="tabpanel" aria-labelledby="service-3-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التسجيل في نظام "تسارع"</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل لتحسين معدل الشهادة الثانوية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">الموافقة على الغياب بعذر في اختبارات الشهادة الثانوية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="service-4" role="tabpanel" aria-labelledby="service-4-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تحويل طالب للتعلم عن بعد</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="service-5" role="tabpanel" aria-labelledby="service-5-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التصديق اليدوي على الشهادات والوثائق الجامعية الصادرة من داخل دولة قطر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التصديق اليدوي بغرض تأجيل أداء الخدمة الوطنية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="service-6" role="tabpanel" aria-labelledby="service-6-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل طالب خارج النطاق الجغرافي لسكن ولي الأمر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">الموافقة على تسجيل أبناء حاملي الوثائق القطرية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل أبناء حاملي الإقامة الدائمة الذين يعملون بالقطاع الخاص في المدارس الحكومية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">نقل طالب من مدرسة حكومية إلى مدرسة حكومية أخرى في حال عدم توفر شاغر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تعديل صف طالب</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تعديل مسار تعليمي أو مادة اختيارية لطلبة الصفوف الحادي عشر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إجازة بعذر للطالب للعلاج أو لمرافقة مريض</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تعريف رقم الكهرباء</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التحقق من استحقاق جهة عمل ولي الأمر للتسجيل بالمدارس الحكومية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">شطب طالب من مدرسة حكومية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تحديد صف دراسي لطالب</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">استثناء تسجيل طالب</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="service-7" role="tabpanel" aria-labelledby="service-7-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل طالب في مدرسة حكومية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">نقل طالب من مدرسة حكومية إلى مدرسة حكومية أخرى</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل طالب في المسار الموازي في المدارس الحكومية لطلبة التعليم المستمر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل "طالب منازل" في المدارس الحكومية لطلبة التعليم المستمر</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل طالب في المراكز الصيفية والربيعية </h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="service-8" role="tabpanel" aria-labelledby="service-8-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إصدار شهادة مشاركة </h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إصدار شهادة تطوع </h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إصدار شهادة شكر وتقدير </h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إفادة مرافقة ولي الأمر لطالب مشارك في نشاط خارج دولة قطر </h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">المشاركة في تنفيذ نشاط</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">إلغاء مشاركة طالب في نشاط</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">استبدال طالب مشارك في نشاط</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">اعتماد تنفيذ نشاط داخل دولة قطر مقدم من جهة خارج الدولة</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التقديم على برنامج توعوي تأهيلي للالتحاق بمهنة التعليم</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التقديم على برنامج توعوي تأهيلي للاختبارات المعيارية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التقديم على برنامج توعوي تأهيلي للابتعاث الحكومي</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التقديم على برنامج توعوي تأهيلي للبرامج الجامعية</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تسجيل طالب في مركز مسائي</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="service-9" role="tabpanel" aria-labelledby="service-9-tab">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">تغيير مستوى الدعم التعليمي لذوي الإعاقة</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">غلق خدمات الدعم التعليمي لذوي الإعاقة</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التقديم على قسيمة تعليمية لذوي الإعاقة</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">توفير وسيلة مواصلات خاصة لطالب من ذوي الاحتياجات خاصة </h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">استمرار توفير وسيلة مواصلات خاصة لطالب ذي احتياجات خاصة</h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row g-2">
+                                                    <div class="col-auto"><div class="card-img"><img class="img-resposnive" src="assets/img/services-icon/1.png" alt="Card image cap"></div></div>    
+                                                    <div class="col"><h5 class="card-title">التقديم على شهادة حضور ولي أمر طالب احتياجات خاصة </h5><p>منصة توفر للجمهور الكريم من المواطنين والمقيمين الخدمات</p></div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 </div>
+                 
+            </div>
+    </section>
+
+</main>
+<footer  id="footer" class="footer">
+    <div class="container copyright text-center"><p>جميع حقوق الملكية محفوظة © 2024 وزارة التربية والتعليم والتعليم العالي .</p></div>
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="fa-solid fa-arrow-up"></i></a>
+
+
+  <!-- Vendor JS Files -->
+  <script src='assets/js/jquery.min.js'></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/animation.js"></script>
+
+    <script src="assets/js/accessibility.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <!-- Script to handle dropdown tab switch -->
+  <script>
+    const dropdown = document.getElementById('tabDropdown');
+    dropdown.addEventListener('change', function () {
+      const tabId = this.value;
+      const tabTrigger = new bootstrap.Tab(document.querySelector(`#${tabId}`));
+      tabTrigger.show();
+    });
+  </script>
+  
+</body>
+
+</html>

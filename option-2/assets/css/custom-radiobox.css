@@ -1,0 +1,110 @@
+.radiobox-container{
+      border: 2px solid #ccc;
+    border-radius: .375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+} 
+.radiobox-container h3{
+
+     font-size: 1.5rem;
+     font-weight: bold;
+     margin-bottom: 0;
+}
+.radiobox-container span.icon {
+  width: 7.75rem;
+    height: 7.75rem;
+    background-color: #e1ebef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.radiobox-container span img{
+  
+    height: 90px;
+}
+.persona-icon{
+  justify-content: center;
+    text-align: center;
+    align-items: center;
+    display: flex;
+     flex-direction: column;
+     gap: 1rem;
+         padding: 1rem;
+
+}
+ .fancy-radio {
+      position: relative;
+      display: inline-flex;
+      align-items: start;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.2rem;
+          padding: 1rem  1rem 0rem 1rem;
+
+    }
+
+    .fancy-radio input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    } 
+
+    .fancy-checkmark {
+      /* position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%); */
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 0 0 2px transparent;
+      transition: all 0.3s ease;
+          border: 1px solid #ccc;
+    }
+.radiobox-container:hover{
+  border-color: var(--secondary-color);
+ 
+}
+.radiobox-container:hover h3{
+  color:var(--accent-color)
+}
+.radiobox-container:hover .fancy-radio .fancy-checkmark,
+    .fancy-radio:hover .fancy-checkmark {
+      box-shadow: 0 0 0 2px var(--secondary-color);
+    }
+
+    .fancy-radio input:checked ~ .fancy-checkmark {
+      background: var(--accent-color);
+      box-shadow: 0 0 0 2px #fff;
+      border: 2px solid transparent;
+    }
+
+    .fancy-checkmark i {
+      color: white;
+      font-size: 1.2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.3s ease;
+    }
+
+    .fancy-radio input:checked ~ .fancy-checkmark i {
+      transform: translate(-50%, -50%) scale(1);
+    }
+.more-info{
+  
+    background-color: #e1ebef;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    text-align: center;
+    border-radius: 0rem 0rem 0.375rem 0.375rem;
+
+}
