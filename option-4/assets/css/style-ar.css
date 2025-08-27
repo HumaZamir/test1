@@ -1,10 +1,8 @@
 
-.form-control
-{padding: 0.75rem 0.75rem 0.75rem 2.25rem;}
+
 .form-select
 {
-   padding: 0.75rem 0.75rem 0.75rem 2.25rem;
-   background-size: 1rem;
+   background-size: .775rem;
 }
 
 @media (min-width: 1200px) {

@@ -27,6 +27,7 @@
 }
 .radiobox-container p{
   margin: 0;
+  color:var(--heading-color)
 }
 .persona-icon{
   justify-content: center;

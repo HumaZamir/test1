@@ -732,35 +732,37 @@ section, .section {
 --------------------------------------------------------------*/
 
 .serach_button {
-    color: var(--heading-color);
+        color: var(--surface-color);
     font-size: 0.875rem;
     border-radius: 0.25rem;
     border: 1px solid var(--secondary-color);
-     display: flex;
+    display: flex;
     align-items: center;
-    background-color: var(--surface-color);
+    background-color: var(--secondary-color);
 }
 .serach_button i{
-  color: var(--secondary-color);
-  padding: .575rem;
+  color: var(--surface-color);
+  padding:.475rem;  
+  background: var(--accent-color);
 }
 .serach_button span{
-    padding:0 0rem 0 .575rem;
+       padding: 0 .575rem;
+    font-size: .805rem;
 }
 .serach_button:hover {
-    background-color: var(--secondary-color) !important;
+    background-color: var(--accent-color) !important;
     border-color: var(--secondary-color);
     color: var(--surface-color);
 }
 .serach_button:hover i{
     color: var(--surface-color);
+    background-color: var(--secondary-color);
 }
 .search-filter.section .row{
     
     color: var(--surface-color);
 }
 .search-filter .form-control{
-  padding: 0.575rem;
   
     border: 0;
     box-shadow: 0px 0px 3.8px 0px rgba(20, 20, 20, 0.04), 0px 0px 8px 0px rgba(20, 20, 20, 0.08);
@@ -784,10 +786,33 @@ section, .section {
 /*--------------------------------------------------------------
 # Tabs 
 --------------------------------------------------------------*/
+.vertical-nav h4 {
+    padding: 1rem;
+}
 .services .tab-content{
      border:0;
      height: 100%;
      background: transparent;
+}
+.services .tab-content h4{
+  font-weight: bold;
+  
+    font-size: 1.4rem;
+}
+.services .tab-content .count {
+    width: 1rem;
+    background: var(--accent-color);
+    padding: 1rem;
+    border-radius: 50%;
+    line-height: 1;
+    font-size: 1rem;
+    height: 1rem;
+    color: var(--surface-color);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+        margin: 0 .275rem;
 }
 .services .tab-content > .tab-pane{
    background-color: transparent;
@@ -801,17 +826,22 @@ section, .section {
     font-weight: 600;
     border: 0;
     border-bottom: 2px dotted #e2e2e2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-
+.services .vertical-nav .nav-pills .nav-link .count{
+  background: #eef3f5;
+    padding: 0.5rem;
+    border-radius: 50%;
+    line-height: 1;
+}
 .services .nav-pills .nav-link.active, 
 .services .nav-pills .show > .nav-link {
     color: var(--accent-color);
-    background: linear-gradient(
-    180deg,
-    rgba(13, 66, 97, 0.06),
-    rgba(138, 21, 56, 0.06)
-  );
+    background: linear-gradient(180deg, rgba(13, 66, 97, 0.06), rgba(138, 21, 56, 0.06));
     border: 2px dotted var(--secondary-color);
+        border-right: 7px solid;
 
 }
 
@@ -828,7 +858,7 @@ section, .section {
     height: 100%;
     background-color: #fff;
     border-radius: 0.75rem;
-    
+    overflow: hidden;
     border-radius: 0.75rem;
     border-color: var(--secondary-color);
     border-width: 2px;
@@ -836,7 +866,12 @@ section, .section {
     border-style: dotted;
 }
 .services .card .card-body{
-  padding:1rem!important;
+  padding:0.675rem 0.675rem 0 0.675rem!important;
+}
+.services .categories{
+  background: linear-gradient(180deg, rgba(13, 66, 97, 0.06), rgba(138, 21, 56, 0.06));
+    overflow: hidden;
+    line-height: 2.5;
 }
 .services .card .card-img {
     width:3rem;
@@ -845,7 +880,6 @@ section, .section {
     padding: 5px;
     text-align: center;
     background-color: var(--surface-color);
-    border:1px solid #e1eaf0;
     border-radius: 2rem;
     justify-content: center;
     align-items: center;
@@ -856,27 +890,30 @@ section, .section {
     padding: 0;
     height: 2rem;
 }
-.services .card-body > .row {
-        align-items: start;
-    justify-content: center;
-    flex-direction: column;
-}
+
 .services .card .card-title{
-       font-size: 1rem;
-    line-height: 2;
+    font-size: 1rem;
+    line-height: 1.6;
     font-weight: 700;
-}
-.services .card .card-body p{
-  margin: 0;
+    color: var(--secondary-color);
 }
 .services .card:hover {
     border:2px dotted var(--secondary-color);
-    color: var(--accent-color);
+   
     box-shadow: 0px 0px 3.8px 0px rgba(20, 20, 20, 0.04), 0px 0px 8px 0px rgba(20, 20, 20, 0.08);
     background: #eef3f5;
 }
-.services .card:hover .card-img{
-    background-color: var(--surface-color);
+.services .card:hover h5{
+ color: var(--accent-color);
+}
+.automated-icon{
+  display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.automated-icon img{
+  width: 25px;
+  height: 25px;
 }
 /* Hide vertical nav on small screens */
     @media (max-width: 768px) {
@@ -921,7 +958,7 @@ section, .section {
 .persona-details{
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     gap: 1rem !important;
-    margin:0.875rem 0.665rem !important;
+    margin:0.575rem !important;
     padding: 0.25rem !important;
     display: flex;
     font-size: 1rem;
@@ -937,9 +974,9 @@ section, .section {
   font-size: 0.875rem;
 }
 .persona-details .btn{
-  padding: 0.25rem !important;
+     padding: 0.175rem !important;
+    font-size: 0.875rem;
 }
-
 
 /* Make sidebar fill remaining viewport height */
     .sidebar {
@@ -952,4 +989,104 @@ section, .section {
     }
     .sidebar.sticky-top{
       top:85px
+    }
+
+
+    @keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 #0a0a0a63
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px #cca92c00
+    }
+
+    to {
+        box-shadow: 0 0 0 0 #cca92c00
+    }
+}
+#chatbot-icon {
+    position: fixed;
+    bottom: 60px;
+    left: 20px;
+    cursor: pointer;
+    padding: 5px 0px;
+    background-color:var(--contrast-color);
+    border-radius: 32px;
+    color: white;
+    font-size: 20px;
+    display: flex
+;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    animation: pulse 2s infinite;
+    border: 2px solid #ccc;
+}
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 540px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 999;
+    overflow:visible
+}
+#chatbot-icon {
+    bottom: 30px;
+    width: 180px;
+    height: 55px;
+}
+#chatarrow-icon {
+    position: fixed;
+    bottom: 135px;
+    right: 20px;
+    display: block;
+    transition: opacity 0.3s ease;
+    background-color: transparent;
+    z-index: 999;
+}
+
+#chatbot-icon .chat-user {
+    height: 65px;
+    width: 65px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    position: absolute;
+    animation: pulse 2s infinite;
+    top: -10px;
+    left: -4px;
+}
+
+#chatbot-icon .chat-user {
+   position: absolute;
+    right: auto;
+    left: 0;
+}
+/* Hide the text initially */
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#chatarrow-icon img {
+    -webkit-transform: rotate(-68deg) scaleX(-1);
+    transform: rotate(-68deg) scaleX(-1);
+    width: 130px;
+    z-index: 999;
+}
+
+    #chatbot-icon span {
+        text-align: left;
+        width: 85%;
+        font-size: 18px !important;
+            padding-left: 1rem;
     }
