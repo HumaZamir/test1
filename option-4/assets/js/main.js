@@ -93,4 +93,28 @@
     window.addEventListener('load', navmenuScrollspy);
     document.addEventListener('scroll', navmenuScrollspy);
 
+
+
+
+
+      // Modern JS
+  const openBtn = document.getElementById('openBtn');
+  const slideDiv = document.getElementById('slideDiv');
+  const closeDiv = document.getElementById('closeDiv');
+
+  // Open div
+  openBtn.addEventListener('click', () => slideDiv.classList.add('active'));
+
+  // Close div on click of close button
+  closeDiv.addEventListener('click', () => slideDiv.classList.remove('active'));
+
+  // Close div on click outside
+  document.addEventListener('click', e => {
+    if (slideDiv.classList.contains('active') &&
+        !slideDiv.contains(e.target) &&
+        !openBtn.contains(e.target)) {
+      slideDiv.classList.remove('active');
+    }
+  });
+
 })();
