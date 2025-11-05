@@ -1,10 +1,8 @@
 
-.form-control
-{padding: 0.75rem 0.75rem 0.75rem 2.25rem;}
+
 .form-select
 {
-   padding: 0.75rem 0.75rem 0.75rem 2.25rem;
-   background-size: 1rem;
+   background-size: .775rem;
 }
 
 @media (min-width: 1200px) {
@@ -22,11 +20,4 @@
 
 .services .vertical-nav .nav-pills .nav-link{
     text-align: right;
-    border-right:5px solid #f2f2f2cf;
-    border-bottom: 0;
-    border: 1px solid #f2f2f2cf;
-}
-.services .nav-pills .nav-link.active, .services .nav-pills .show > .nav-link {
-   
-    border-right: 5px solid var(--accent-color);
 }
